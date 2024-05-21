@@ -17,10 +17,10 @@ public class ModeloCaballero {
 		try {
 			PreparedStatement pst = this.conector.getConexion().prepareStatement(sql);
 			ResultSet rs = pst.executeQuery(sql);
-			
+
 			ModeloArma modeloArma = new ModeloArma();
 			modeloArma.setConector(conector);
-			
+
 			ModeloEscudo modeloEscudo = new ModeloEscudo();
 			modeloEscudo.setConector(conector);
 
@@ -45,6 +45,28 @@ public class ModeloCaballero {
 
 		}
 		return caballeros;
+	}
+
+	public void insert(Caballero caballero) {
+
+		String sql = "INSERT INTO caballeros( nombre, fuerza, experiencia, foto, arma_id, escudo_id) VALUES (?,?,?,?,?,?)";
+
+		try {
+
+			PreparedStatement pst = this.conector.getConexion().prepareStatement(sql);
+
+			pst.setString(1, caballero.getNombre());
+			pst.setInt(2, caballero.getFuerza());
+			pst.setInt(3, caballero.getExperiencia());
+			pst.setString(4, caballero.getFoto());
+			pst.setInt(5, caballero.getArma().getId());
+			pst.setInt(6, caballero.getEscudo().getId());
+
+			pst.execute();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void setConector(Conector conector) {

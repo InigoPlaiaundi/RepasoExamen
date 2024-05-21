@@ -20,7 +20,7 @@ import modelo.ModeloEscudo;
 /**
  * Servlet implementation class Index
  */
-@WebServlet("/Index")
+@WebServlet("/IndexCaballero")
 public class IndexCaballero extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
