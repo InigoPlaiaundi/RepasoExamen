@@ -2,6 +2,7 @@ package modelo;
 
 public class Arma {
 
+	
 	private int id;
 	private String nombre;
 	private int capacidad_danio;
@@ -31,5 +32,11 @@ public class Arma {
 	}
 	public void setFoto(String foto) {
 		this.foto = foto;
+	}
+	
+	@Override
+	public String toString() {
+		return "Arma [id=" + id + ", nombre=" + nombre + ", capacidad_danio=" + capacidad_danio + ", foto=" + foto
+				+ "]";
 	}
 }

@@ -9,9 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import modelo.Arma;
 import modelo.Caballero;
 import modelo.Conector;
+import modelo.Escudo;
+import modelo.ModeloArma;
 import modelo.ModeloCaballero;
+import modelo.ModeloEscudo;
 
 /**
  * Servlet implementation class Index
@@ -34,15 +38,26 @@ public class IndexCaballero extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		Conector conector = new Conector();
 
 		ModeloCaballero modeloCaballero = new ModeloCaballero();
 		modeloCaballero.setConector(conector);
+		
+		ModeloArma modeloArma = new ModeloArma();
+		modeloArma.setConector(conector);
+		
+		ModeloEscudo modeloEscudo = new ModeloEscudo();
+		modeloEscudo.setConector(conector);
 
 		ArrayList<Caballero> caballeros = modeloCaballero.getTodos();
+		ArrayList<Arma> armas = modeloArma.getTodos();
+		ArrayList<Escudo> escudos = modeloEscudo.getTodos();
+		
 
 		request.setAttribute("caballeros", caballeros);
+		request.setAttribute("armas", armas);
+		request.setAttribute("escudos", escudos);
 
 		request.getRequestDispatcher("indexCaballero.jsp").forward(request, response);
 

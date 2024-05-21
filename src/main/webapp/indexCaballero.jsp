@@ -23,11 +23,14 @@
                     <table class="table">
                         <thead>
                           <tr>
-                            <th scope="col">id</th>
+                            <th scope="">id</th>
                             <th scope="col">nombre</th>
                             <th scope="col">fuerza</th>
                             <th scope="col">experiencia</th>
                             <th scope="col">foto</th>
+                            <th scope="col">arma</th>
+                            <th scope="col">escudo</th>
+                            
                             
                             <th></th>
                           </tr>
@@ -36,11 +39,15 @@
                         
                         <c:forEach items="${caballeros}" var="caballero">
                           <tr>
-                            <td>${caballero.id}</td>
+                            <td> </td>
                             <td>${caballero.nombre}</td>
                             <td>${caballero.fuerza}</td>
                             <td>${caballero.experiencia}</td>
                             <td>${caballero.foto}</td>
+                            <td>${caballero.arma.nombre}</td>
+                            <td>${caballero.escudo.nombre}</td>
+                            
+                            
                             <td>
                             	                       	
                             </td>

@@ -5,6 +5,7 @@ public class Escudo {
 	private int id;
 	private String nombre;
 	private int capacidad_defensa;
+	
 	public int getId() {
 		return id;
 	}
