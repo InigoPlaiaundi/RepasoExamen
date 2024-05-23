@@ -77,4 +77,30 @@ public class ModeloCaballero {
 		return conector;
 	}
 
+	public boolean checkNombre(String nombre) {
+
+		String sql = "SELECT nombre FROM CABALLEROS WHERE nombre=?";
+
+		try {
+
+			PreparedStatement pst = this.conector.getConexion().prepareStatement(sql);
+			ResultSet rs = pst.executeQuery();
+			
+			pst.setString(1, nombre);
+
+			if (rs.next()) {
+				return true;
+			}
+
+			else {
+				return false;
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return true;
+
+	}
+
 }

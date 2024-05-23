@@ -58,6 +58,9 @@ public class IndexCaballero extends HttpServlet {
 		request.setAttribute("caballeros", caballeros);
 		request.setAttribute("armas", armas);
 		request.setAttribute("escudos", escudos);
+		
+		request.setAttribute("msg", request.getParameter("msg"));
+		
 
 		request.getRequestDispatcher("indexCaballero.jsp").forward(request, response);
 

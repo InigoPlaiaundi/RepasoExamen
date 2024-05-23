@@ -1,6 +1,8 @@
 package controlador;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -44,7 +46,7 @@ public class Store extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		// recibir los tatos del caballero
+		// recibir los datos del caballero
 
 		String nombre = request.getParameter("nombre");
 		int fuerza = Integer.parseInt(request.getParameter("fuerza"));
@@ -73,11 +75,25 @@ public class Store extends HttpServlet {
 
 		ModeloCaballero modeloCaballero = new ModeloCaballero();
 		modeloCaballero.setConector(conector);
-		modeloCaballero.insert(caballero);
+
+		boolean nombreRepetido = modeloCaballero.checkNombre(nombre);
+
+		if (caballero.getNombre().length() > 0 && caballero.getFuerza() >0 &&  caballero.getFuerza()<100 &&  nombreRepetido == true) {
+			
+			modeloCaballero.insert(caballero);
+			response.sendRedirect("IndexCaballero?msg=correcto");
+		}
+		
+		else {
+			
+			response.sendRedirect("IndexCaballero?msg=petao");
+		}
+			
 
 		// abrir lo que quiera, en mi caso inicio
+
 		
-		response.sendRedirect("IndexCaballero");
+
 	}
 
 }
