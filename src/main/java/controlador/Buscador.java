@@ -2,6 +2,7 @@ package controlador;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,25 +10,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import modelo.Arma;
 import modelo.Caballero;
 import modelo.Conector;
-import modelo.Escudo;
-import modelo.ModeloArma;
 import modelo.ModeloCaballero;
-import modelo.ModeloEscudo;
 
 /**
- * Servlet implementation class Index
+ * Servlet implementation class Buscador
  */
-@WebServlet("/IndexCaballero")
-public class IndexCaballero extends HttpServlet {
+@WebServlet("/Buscador")
+public class Buscador extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public IndexCaballero() {
+	public Buscador() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -40,23 +37,25 @@ public class IndexCaballero extends HttpServlet {
 			throws ServletException, IOException {
 
 		Conector conector = new Conector();
-
 		ModeloCaballero modeloCaballero = new ModeloCaballero();
 		modeloCaballero.setConector(conector);
 
-		ModeloArma modeloArma = new ModeloArma();
-		modeloArma.setConector(conector);
-
-		ModeloEscudo modeloEscudo = new ModeloEscudo();
-		modeloEscudo.setConector(conector);
-
 		ArrayList<Caballero> caballeros = modeloCaballero.getTodos();
 
-		request.setAttribute("caballeros", caballeros);
+		String nombreBuscado = request.getParameter("nombre").toLowerCase(); 
+		ArrayList<Caballero> caballerosEncontrados = new ArrayList<>();
 
-		request.setAttribute("msg", request.getParameter("msg"));
+		Iterator<Caballero> iterador = caballeros.iterator();
 
-		request.getRequestDispatcher("indexCaballero.jsp").forward(request, response);
+		while (iterador.hasNext()) {
+			Caballero caballero = iterador.next();
+			if (caballero.getNombre().toLowerCase().contains(nombreBuscado)) {
+				caballerosEncontrados.add(caballero);
+			}
+		}
+
+		request.setAttribute("caballeros", caballerosEncontrados);
+		request.getRequestDispatcher("mostrarCaballero.jsp").forward(request, response);
 
 	}
 

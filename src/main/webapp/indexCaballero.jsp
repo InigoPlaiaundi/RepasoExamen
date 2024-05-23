@@ -19,30 +19,39 @@
 
 	<div class="container">
 		<div class="row">
-		
-		 <!-- Mensajes de resultado -->
-		<c:if test="${msg=='petao'}">
-			<div class="alert alert-danger alert-dismissible fade show m-0"
-				role="alert">
-				<strong>Error:</strong> No validado.
-				<button type="button" class="btn-close" data-bs-dismiss="alert"
-					aria-label="Close"></button>
-			</div>
-		</c:if>
-		
-		<c:if test="${msg== 'correcto'}">
-		
-		<div class="alert alert-success alert-dismissible fade show m-0"
-				role="alert">
-				<strong>Ok!</strong> Caballero insertado correctamente.
-				<button type="button" class="btn-close" data-bs-dismiss="alert"
-					aria-label="Close"></button>
-			</div>
-		</c:if>
-		
+
+			<!-- Mensajes de resultado -->
+			<c:if test="${msg=='petao'}">
+				<div class="alert alert-danger alert-dismissible fade show m-0"
+					role="alert">
+					<strong>Error:</strong> No validado.
+					<button type="button" class="btn-close" data-bs-dismiss="alert"
+						aria-label="Close"></button>
+				</div>
+			</c:if>
+
+			<c:if test="${msg== 'correcto'}">
+
+				<div class="alert alert-success alert-dismissible fade show m-0"
+					role="alert">
+					<strong>Ok!</strong> Caballero insertado correctamente.
+					<button type="button" class="btn-close" data-bs-dismiss="alert"
+						aria-label="Close"></button>
+				</div>
+			</c:if>
+
 			<div class="col">
 				<a href="Create">Crear</a>
 			</div>
+
+			<form action="Buscador" method="post">
+				<div class="mb-3">
+					<label for="exampleInputEmail1"  class="form-label">Nombre</label> <input type="text" name="nombre" class="form-control">
+				</div>
+				
+				
+				<button type="submit" class="btn btn-primary">Buscar</button>
+			</form>
 		</div>
 		<div class="row">
 			<div class="col">

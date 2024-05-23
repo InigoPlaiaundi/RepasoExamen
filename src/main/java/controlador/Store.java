@@ -90,7 +90,7 @@ public class Store extends HttpServlet {
 		}
 			
 
-		// abrir lo que quiera, en mi caso inicio
+		
 
 		
 
